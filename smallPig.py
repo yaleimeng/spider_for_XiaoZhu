@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 import requests as rq
 import time
 import csv
+import codecs
 
   #从首页出发。目标是分析300个链接。根据数字规律构造网址的列表。
 site =['http://gz.xiaozhu.com/search-duanzufang-p{}-0/'.format(str(i)) for i in range(1,15)]
@@ -69,6 +70,7 @@ for eve in newUrls:         #针对newUrls里面每个url,做详情页的爬取�
 print('字典列表的个数为%d'%len(csvRows))
 rowHeader = ['title','address','roomPic','price','owner','gender','ownerPic']
 with open('E:/romm.csv','w')as f:
+    f.write(codecs.BOM_UTF8)
     f_csv = csv.DictWriter(f,rowHeader)
     f_csv.writeheader()
     f_csv.writerows(csvRows)
